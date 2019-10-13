@@ -32,7 +32,7 @@ export class DatabaseService {
   }
 
 
-  saveNewExpense(expense: Expense | ExpenseImportModel, userId: string) {
+  saveNewExpense(expense: Expense | ExpenseImportModel, userId: string): firebase.database.ThenableReference {
     return this.db.database.ref('users/' + userId + '/expenses').push(
       expense
     );
