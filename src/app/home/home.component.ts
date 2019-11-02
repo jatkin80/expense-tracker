@@ -157,8 +157,8 @@ export class HomeComponent implements OnInit {
     this.isLoadingCategories = true;
     const currentUser = this.loginService.getUserId();
     this.database.saveNewCategories(this.categories.map(category => category.value), currentUser).then(jsonData => {
-      this.originalCategories = {...this.categories};
       this.loginService.setCategories(this.categories.map(category => category.value));
+      this.originalCategories = cloneDeep(this.categories);
       this.openSnackBar('Categories saved!');
       this.onUpdateToCategories();
       this.isLoadingCategories = false;
