@@ -1,14 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
-import { expense_categories, User } from '../shared/models/user-model';
-import { DatabaseService } from '../services/database.service';
+import { cloneDeep, find, includes, isEqual, transform, pick } from 'lodash';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatHorizontalStepper } from '@angular/material/stepper';
-import { ExpenseImportModel } from './expense-import/expense-import.model';
 import { ENTER } from '@angular/cdk/keycodes';
-import { cloneDeep, find, includes, isEqual, transform, pick } from 'lodash';
+
+import { LoginService } from '../services/login.service';
+import { expense_categories, User } from '../shared/models/user-model';
+import { DatabaseService } from '../services/database.service';
+import { ExpenseImportModel } from './expense-import/expense-import.model';
 
 @Component({
   selector: 'app-home',
@@ -138,7 +139,6 @@ export class HomeComponent implements OnInit {
         .catch(e =>   this.openSnackBar(e.message));
     }
   }
-
 
   onCategoryEntered(data: MatChipInputEvent) {
     const valueTrimmed = data.value.trim();
